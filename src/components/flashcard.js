@@ -93,10 +93,10 @@ export function Flashcard({ question, answer, category, sampleGerman, sampleEngl
               {sampleGerman && (
                 <div className="mt-4 backdrop-blur-sm bg-teal-900/30 p-3 rounded-md border border-teal-500/20 group-hover:border-teal-500/40 transition-all duration-300">
                   <div className="text-base text-teal-200 font-medium">
-                    "{sampleGerman}"
+                    &ldquo;{sampleGerman}&rdquo;
                   </div>
                   <div className="text-sm text-teal-300/90 italic mt-1">
-                    "{sampleEnglish}"
+                    &ldquo;{sampleEnglish}&rdquo;
                   </div>
                 </div>
               )}
