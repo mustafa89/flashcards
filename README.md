@@ -1,37 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# German Vocabulary Flashcards
+
+![German Flashcards App](https://img.shields.io/badge/App-German%20Flashcards-teal)
+![Next.js](https://img.shields.io/badge/Next.js-App%20Router-black)
+![Tailwind](https://img.shields.io/badge/Tailwind-Styling-38bdf8)
+![Shadcn UI](https://img.shields.io/badge/Shadcn%20UI-Components-black)
+
+An interactive flashcard application for learning German vocabulary, focusing on prefix verbs and common words. Built with Next.js, Tailwind CSS, and Shadcn UI components.
+
+## Features
+
+- **Interactive Flashcards**: Hover over cards to reveal translations and example sentences
+- **Beautiful UI**: Modern dark theme with teal accents and subtle animations
+- **Categorized Content**: Vocabulary organized by word type (Nouns, Verbs, Adjectives)
+- **Example Sentences**: Real-world German usage examples with English translations
+- **Batch Controls**: Reveal all cards at once or reset them with a single click
+- **Responsive Design**: Works on mobile and desktop devices
+- **Prefix Collections**: Specialized sets of words with common prefixes (ab-, an-, etc.)
+
+## Vocabulary Sets
+
+The application currently includes:
+- German words with "ab-" prefix
+- German words with "an-" prefix
+- Each word includes proper articles, translations, and contextual example sentences
+
+## Technical Implementation
+
+- **React Server Components**: Fast, server-rendered UI
+- **Tailwind CSS**: Utility-first styling approach
+- **Shadcn UI**: Customizable component system
+- **Hover Interactions**: Smooth transitions and animations
+- **Responsive Grid Layout**: Adapts to different screen sizes
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
+- Node.js 18+ installed
+- npm or yarn package manager
+
+### Installation
+
+1. Clone the repository:
+```
+git clone https://github.com/yourusername/german-flashcards.git
+cd german-flashcards
+```
+
+2. Install dependencies:
+```
+npm install
+# or
+yarn install
+```
+
+3. Run the development server:
+```
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/              # Next.js app router pages
+├── components/       # Reusable UI components
+│   ├── flashcard.js  # Individual flashcard component
+│   └── flashcard-container.js # Container for flashcards
+├── lib/             
+│   └── data.js       # Vocabulary dataset
+└── styles/           # Global styles
+```
 
-## Learn More
+## Customization
 
-To learn more about Next.js, take a look at the following resources:
+To add more flashcards, edit the `src/lib/data.js` file and add new entries following the existing structure:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```javascript
+{
+  question: "der Abfall",
+  answer: "waste / garbage",
+  category: "Nouns",
+  sampleGerman: "Bitte bringe den Abfall nach draußen.",
+  sampleEnglish: "Please take the garbage outside."
+}
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Acknowledgments
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# flashcards
+- Thanks to all contributors who helped enhance the German vocabulary dataset
+- Shadcn UI for the beautiful component library
+- Next.js team for the excellent React framework
