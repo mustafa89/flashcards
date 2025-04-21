@@ -8,6 +8,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { MenuIcon, BookmarkIcon } from "@/components/icons";
 
 // Memoize the sidebar list item component for better performance
 const SidebarItem = memo(({ card, index, isBookmarked, onClick, onToggleBookmark }) => (
@@ -30,19 +31,7 @@ const SidebarItem = memo(({ card, index, isBookmarked, onClick, onToggleBookmark
           </span>
           {isBookmarked && (
             <span className="ml-1 flex-shrink-0">
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                width="14" 
-                height="14" 
-                viewBox="0 0 24 24" 
-                fill="#10B981"
-                stroke="#10B981" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              >
-                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-              </svg>
+              <BookmarkIcon width={14} height={14} filled={true} />
             </span>
           )}
         </button>
@@ -78,19 +67,11 @@ const SidebarItem = memo(({ card, index, isBookmarked, onClick, onToggleBookmark
             }} 
             className="text-sm flex items-center gap-1.5 bg-zinc-700/50 hover:bg-zinc-700 text-zinc-300 px-2.5 py-1.5 rounded transition-colors"
           >
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              width="14" 
-              height="14" 
-              viewBox="0 0 24 24" 
-              fill={isBookmarked ? "#10B981" : "none"}
-              stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-            >
-              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-            </svg>
+            <BookmarkIcon 
+              width={14} 
+              height={14} 
+              filled={isBookmarked}
+            />
             {isBookmarked ? "Bookmarked" : "Bookmark"}
           </button>
         </div>
@@ -209,11 +190,7 @@ export function FlashcardContainer({ cards }) {
                 : "bg-zinc-800/80 text-zinc-300 border-zinc-700 hover:bg-zinc-700/70"
             }`}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="3" y1="12" x2="21" y2="12"></line>
-              <line x1="3" y1="6" x2="21" y2="6"></line>
-              <line x1="3" y1="18" x2="21" y2="18"></line>
-            </svg>
+            <MenuIcon width={16} height={16} />
             {sidebarVisible ? "Hide Word List" : "Show Word List"}
           </button>
           
@@ -237,19 +214,12 @@ export function FlashcardContainer({ cards }) {
                 : "bg-zinc-800 text-white border-zinc-600 hover:border-emerald-500/30"
             }`}
           >
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              width="16" 
-              height="16" 
-              viewBox="0 0 24 24" 
-              fill={showBookmarkedOnly ? "#10B981" : "none"}
-              stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-            >
-              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-            </svg>
+            <BookmarkIcon 
+              width={16} 
+              height={16} 
+              filled={showBookmarkedOnly} 
+              fillColor={showBookmarkedOnly ? "#10B981" : undefined}
+            />
             {showBookmarkedOnly ? "All Cards" : "Bookmarked"}
           </button>
         </div>

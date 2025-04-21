@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { BookmarkIcon } from "@/components/icons";
 
 export function Flashcard({ question, answer, category, sampleGerman, sampleEnglish, forceFlip, onBookmark, isBookmarked = false }) {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -76,20 +77,14 @@ export function Flashcard({ question, answer, category, sampleGerman, sampleEngl
                 onClick={handleBookmarkClick}
                 title={bookmarked ? "Remove bookmark" : "Bookmark this card"}
               >
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  width="20" 
-                  height="20" 
-                  viewBox="0 0 24 24" 
-                  fill={bookmarked ? "#10B981" : "none"}
-                  stroke={bookmarked ? "#10B981" : "#6B7280"} 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round"
-                  className="transition-all duration-300 hover:stroke-teal-400"
-                >
-                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-                </svg>
+                <BookmarkIcon 
+                  width={20} 
+                  height={20} 
+                  filled={bookmarked} 
+                  fillColor="#10B981" 
+                  stroke={bookmarked ? "#10B981" : "#6B7280"}
+                  className="transition-all duration-300 hover:stroke-teal-400" 
+                />
               </div>
             </CardFooter>
           </Card>
@@ -149,20 +144,14 @@ export function Flashcard({ question, answer, category, sampleGerman, sampleEngl
                 onClick={handleBookmarkClick}
                 title={bookmarked ? "Remove bookmark" : "Bookmark this card"}
               >
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  width="20" 
-                  height="20" 
-                  viewBox="0 0 24 24" 
-                  fill={bookmarked ? "#10B981" : "none"}
-                  stroke={bookmarked ? "#10B981" : "#E2E8F0"} 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round"
-                  className="transition-all duration-300 hover:stroke-teal-300"
-                >
-                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-                </svg>
+                <BookmarkIcon 
+                  width={20} 
+                  height={20} 
+                  filled={bookmarked} 
+                  fillColor="#10B981" 
+                  stroke={bookmarked ? "#10B981" : "#E2E8F0"}
+                  className="transition-all duration-300 hover:stroke-teal-300" 
+                />
               </div>
             </CardFooter>
           </Card>
