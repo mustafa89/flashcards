@@ -80,6 +80,9 @@ const SidebarItem = memo(({ card, index, isBookmarked, onClick, onToggleBookmark
   </li>
 ));
 
+// Add display name to the memoized component
+SidebarItem.displayName = "SidebarItem";
+
 export function FlashcardContainer({ cards }) {
   // Use null for initial state (undefined), true for reveal, false for reset
   const [revealAll, setRevealAll] = useState(null);
