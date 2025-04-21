@@ -294,7 +294,7 @@ export function FlashcardContainer({ cards }) {
                 <ul className="space-y-0.5" style={{ direction: 'ltr' }}>
                   {filteredCards.map((card, index) => (
                     <SidebarItem
-                      key={card.question}
+                      key={`${card.question}-${index}`}
                       card={card}
                       index={index}
                       isBookmarked={Boolean(bookmarkedCards[card.question])}
@@ -320,7 +320,7 @@ export function FlashcardContainer({ cards }) {
             {filteredCards.length > 0 ? (
               filteredCards.map((card, index) => (
                 <Flashcard
-                  key={card.question}
+                  key={`${card.question}-${index}`}
                   question={card.question}
                   answer={card.answer}
                   category={card.category}
