@@ -1,7 +1,63 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: German Vocabulary Flashcard App
+globs: 
+alwaysApply: true
+---
+
 - You are an expert in TypeScript, Node.js, Next.js App Router, React, Shadcn UI, and Tailwind and Framer Motion.
 
-- Code Style and Structure
+## Project Overview
+- This is a German vocabulary flashcard application built with Next.js and React
+- The app displays flashcards with German words (front) and English translations with example sentences (back)
+- Cards are flipped on hover to reveal translations and example usage
 
+## Code Organization
+- `src/components/` contains all UI components
+- `src/lib/` contains data and utility functions
+- `src/lib/categories/` stores vocabulary organized by grammatical categories (nouns, verbs, etc.)
+
+## Component Structure
+- `FlashcardContainer` manages card collection, filtering, and reveal/reset functionality
+- `Flashcard` renders individual cards with hover-based flipping animation
+- UI components from shadcn/ui are used throughout the application
+
+## Data Structure
+- Flashcards follow this structure:
+  ```javascript
+  {
+    question: "German word", // Front of card
+    answer: "English translation", // Back of card
+    category: "Grammatical category", // e.g., "Verbs", "Nouns"
+    sampleGerman: "Example sentence in German",
+    sampleEnglish: "Example sentence in English"
+  }
+  ```
+
+## Styling Conventions
+- Use Tailwind CSS for all styling
+- Dark theme with teal accents for interactive elements
+- Card front uses dark background (#171717) with white text
+- Card back uses teal gradient with white/teal text
+- Hover animations include scaling, shadow enhancement, and shine effects
+
+## Interaction Patterns
+- Cards flip on hover to reveal translation and examples
+- "Reveal All" button shows all card backs simultaneously
+- "Reset All" button returns all cards to front-facing state
+- Category filters allow focusing on specific word types
+
+## Performance Considerations
+- Use React hooks (useState, useEffect, useMemo) for efficient state management
+- Implement conditional rendering where appropriate
+- Use Tailwind's JIT compiler for optimal CSS bundle size
+
+
+## Code Style and Structure
   - Write concise, technical pure javascript code with accurate examples.
   - Do not use typescript.
   - Use functional and declarative programming patterns; avoid classes.
@@ -9,33 +65,28 @@
   - Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError).
   - Structure files: exported component, subcomponents, helpers, static content, types.
 
-- Naming Conventions
-
+## Naming Conventions
   - All components should go in src/components and be named like new-component.js
   - Use lowercase with dashes for directories (e.g., components/auth-wizard).
   - Favor named exports for components.
 
-- Syntax and Formatting
-
+## Syntax and Formatting
   - Use the "function" keyword for pure functions.
   - Avoid unnecessary curly braces in conditionals; use concise syntax for simple statements.
   - Use declarative JSX.
 
-- UI and Styling
-
+## UI and Styling
   - Use https://ui.shadcn.com/, and Tailwind for components and styling.
   - Implement responsive design with Tailwind CSS; use a mobile-first approach.
   - @https://tailwindcss.com/docs/installation/framework-guides/nextjs based on this link import and integrate tailwindcss. Pease use preplexity mcp tool if available to assist of necessary.
 
-- Performance Optimization
-
+## Performance Optimization
   - Minimize 'use client', 'useEffect', and 'setState'; favor React Server Components (RSC).
   - Wrap client components in Suspense with fallback.
   - Use dynamic loading for non-critical components.
   - Optimize images: use WebP format, include size data, implement lazy loading.
 
-- Key Conventions
-
+## Key Conventions
   - Use 'nuqs' for URL search parameter state management.
   - Optimize Web Vitals (LCP, CLS, FID).
   - Limit 'use client':

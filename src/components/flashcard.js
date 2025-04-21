@@ -4,9 +4,10 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-export function Flashcard({ question, answer, category, sampleGerman, sampleEnglish, forceFlip }) {
+export function Flashcard({ question, answer, category, sampleGerman, sampleEnglish, forceFlip, onBookmark, isBookmarked = false }) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [bookmarked, setBookmarked] = useState(isBookmarked);
 
   // Handle force flip from parent component
   useEffect(() => {
@@ -18,6 +19,22 @@ export function Flashcard({ question, answer, category, sampleGerman, sampleEngl
       setIsFlipped(isHovering);
     }
   }, [forceFlip, isHovering]);
+  
+  // Initialize bookmark state from prop
+  useEffect(() => {
+    setBookmarked(isBookmarked);
+  }, [isBookmarked]);
+
+  const handleBookmarkClick = (e) => {
+    e.stopPropagation();
+    const newBookmarkedState = !bookmarked;
+    setBookmarked(newBookmarkedState);
+    
+    // Notify parent component if callback provided
+    if (onBookmark) {
+      onBookmark(question, newBookmarkedState);
+    }
+  };
 
   return (
     <div 
@@ -51,8 +68,29 @@ export function Flashcard({ question, answer, category, sampleGerman, sampleEngl
               <div className="text-2xl font-bold text-center text-[#FAFAFA]">{question}</div>
             </CardContent>
             
-            <CardFooter className="border-t border-zinc-800 pt-4">
-              <div className="text-xs text-zinc-500 text-center w-full">Hover to see translation and example</div>
+            <CardFooter className="border-t border-zinc-800 pt-4 relative">
+              <div className="text-xs text-zinc-500 text-center w-full">Hover to see Meaning | Bookmark {'->'}  </div>
+              {/* Bookmark icon */}
+              <div 
+                className="absolute bottom-4 right-4 z-10 cursor-pointer bg-zinc-900/60 p-1.5 rounded-full backdrop-blur-sm transition-all duration-300 hover:bg-zinc-900/80 hover:shadow-[0_0_10px_rgba(100,255,218,0.3)]"
+                onClick={handleBookmarkClick}
+                title={bookmarked ? "Remove bookmark" : "Bookmark this card"}
+              >
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="20" 
+                  height="20" 
+                  viewBox="0 0 24 24" 
+                  fill={bookmarked ? "#10B981" : "none"}
+                  stroke={bookmarked ? "#10B981" : "#6B7280"} 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                  className="transition-all duration-300 hover:stroke-teal-400"
+                >
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </div>
             </CardFooter>
           </Card>
         </div>
@@ -102,8 +140,30 @@ export function Flashcard({ question, answer, category, sampleGerman, sampleEngl
               )}
             </CardContent>
             
-            <CardFooter className="border-t border-teal-700/50 pt-4">
+            <CardFooter className="border-t border-teal-700/50 pt-4 relative">
               <div className="text-xs text-teal-300/80 text-center w-full">Release hover to return</div>
+              
+              {/* Bookmark icon */}
+              <div 
+                className="absolute bottom-4 right-4 z-10 cursor-pointer bg-teal-900/60 p-1.5 rounded-full backdrop-blur-sm transition-all duration-300 hover:bg-teal-800/80 hover:shadow-[0_0_10px_rgba(100,255,218,0.5)]"
+                onClick={handleBookmarkClick}
+                title={bookmarked ? "Remove bookmark" : "Bookmark this card"}
+              >
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="20" 
+                  height="20" 
+                  viewBox="0 0 24 24" 
+                  fill={bookmarked ? "#10B981" : "none"}
+                  stroke={bookmarked ? "#10B981" : "#E2E8F0"} 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                  className="transition-all duration-300 hover:stroke-teal-300"
+                >
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </div>
             </CardFooter>
           </Card>
         </div>
