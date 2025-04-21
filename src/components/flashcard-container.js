@@ -1,7 +1,103 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, memo } from "react";
 import { Flashcard } from "@/components/flashcard";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
+// Memoize the sidebar list item component for better performance
+const SidebarItem = memo(({ card, index, isBookmarked, onClick, onToggleBookmark }) => (
+  <li className="relative">
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <button 
+          onClick={onClick}
+          className={`w-full px-3 py-2 rounded-lg transition-all duration-200 flex items-center text-sm ${
+            isBookmarked
+            ? "bg-teal-900/20 border border-teal-900/30 hover:bg-teal-900/30" 
+            : "hover:bg-zinc-800/60"
+          }`}
+        >
+          <span className="w-6 inline-block text-right mr-2 text-zinc-500 font-mono text-xs">
+            {index + 1}.
+          </span>
+          <span className={`${isBookmarked ? "text-teal-200" : "text-zinc-300"} truncate text-left`}>
+            {card.question}
+          </span>
+          {isBookmarked && (
+            <span className="ml-1 flex-shrink-0">
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                width="14" 
+                height="14" 
+                viewBox="0 0 24 24" 
+                fill="#10B981"
+                stroke="#10B981" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              >
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </span>
+          )}
+        </button>
+      </TooltipTrigger>
+      <TooltipContent 
+        side="right" 
+        align="start" 
+        sideOffset={8}
+        className="bg-zinc-800 text-white p-4 rounded-lg shadow-xl border border-zinc-700 max-w-sm w-[320px]"
+      >
+        <div className="mb-3 flex justify-between items-center">
+          <span className="font-medium text-teal-300 text-base">{card.question}</span>
+          {card.category && (
+            <span className="text-xs bg-zinc-700 text-teal-200 px-2 py-0.5 rounded-full">
+              {card.category}
+            </span>
+          )}
+        </div>
+        <div className="text-white text-base font-medium mb-2">
+          {card.answer}
+        </div>
+        {card.sampleGerman && (
+          <div className="mt-3 pt-3 border-t border-zinc-700 text-sm">
+            <div className="text-zinc-300">{card.sampleGerman}</div>
+            <div className="text-zinc-400 italic mt-1">{card.sampleEnglish}</div>
+          </div>
+        )}
+        <div className="mt-4 pt-3 border-t border-zinc-700 flex justify-end">
+          <button 
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggleBookmark(card.question, !isBookmarked);
+            }} 
+            className="text-sm flex items-center gap-1.5 bg-zinc-700/50 hover:bg-zinc-700 text-zinc-300 px-2.5 py-1.5 rounded transition-colors"
+          >
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              width="14" 
+              height="14" 
+              viewBox="0 0 24 24" 
+              fill={isBookmarked ? "#10B981" : "none"}
+              stroke="currentColor" 
+              strokeWidth="2" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            >
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+            </svg>
+            {isBookmarked ? "Bookmarked" : "Bookmark"}
+          </button>
+        </div>
+      </TooltipContent>
+    </Tooltip>
+  </li>
+));
 
 export function FlashcardContainer({ cards }) {
   // Use null for initial state (undefined), true for reveal, false for reset
@@ -55,15 +151,15 @@ export function FlashcardContainer({ cards }) {
     setFilteredCards(filtered);
   }, [selectedCategory, cards, bookmarkedCards, showBookmarkedOnly]);
   
-  const handleCategoryChange = (category) => {
+  const handleCategoryChange = useCallback((category) => {
     setSelectedCategory(category);
-  };
+  }, []);
   
-  const handleRevealAll = () => {
+  const handleRevealAll = useCallback(() => {
     setRevealAll(true);
-  };
+  }, []);
   
-  const handleResetAll = () => {
+  const handleResetAll = useCallback(() => {
     // First set to false to force reset all cards
     setRevealAll(false);
     
@@ -71,33 +167,35 @@ export function FlashcardContainer({ cards }) {
     setTimeout(() => {
       setRevealAll(null);
     }, 100);
-  };
+  }, []);
   
-  const handleBookmarkToggle = (question, isBookmarked) => {
-    const updatedBookmarks = { ...bookmarkedCards, [question]: isBookmarked };
-    
-    // If a card is unmarked, remove it from the object to keep it clean
-    if (!isBookmarked) {
-      delete updatedBookmarks[question];
-    }
-    
-    setBookmarkedCards(updatedBookmarks);
-    
-    // Save to localStorage
-    try {
-      localStorage.setItem("flashcardBookmarks", JSON.stringify(updatedBookmarks));
-    } catch (error) {
-      console.error("Error saving bookmarks:", error);
-    }
-  };
+  const handleBookmarkToggle = useCallback((question, isBookmarked) => {
+    setBookmarkedCards(prev => {
+      const updatedBookmarks = { ...prev, [question]: isBookmarked };
+      
+      // If a card is unmarked, remove it from the object to keep it clean
+      if (!isBookmarked) {
+        delete updatedBookmarks[question];
+      }
+      
+      // Save to localStorage
+      try {
+        localStorage.setItem("flashcardBookmarks", JSON.stringify(updatedBookmarks));
+      } catch (error) {
+        console.error("Error saving bookmarks:", error);
+      }
+      
+      return updatedBookmarks;
+    });
+  }, []);
   
-  const toggleBookmarkedFilter = () => {
+  const toggleBookmarkedFilter = useCallback(() => {
     setShowBookmarkedOnly(prev => !prev);
-  };
+  }, []);
   
-  const toggleSidebar = () => {
+  const toggleSidebar = useCallback(() => {
     setSidebarVisible(prev => !prev);
-  };
+  }, []);
   
   return (
     <div className="container mx-auto px-4 py-6">
@@ -180,7 +278,7 @@ export function FlashcardContainer({ cards }) {
       <div className="flex gap-6">
         {/* Sidebar */}
         {sidebarVisible && (
-          <div className="w-56 shrink-0 sticky top-4 self-start max-h-[calc(100vh-2rem)] bg-gradient-to-br from-zinc-900 to-zinc-950 border border-zinc-800 rounded-xl shadow-xl overflow-hidden">
+          <div className="w-56 shrink-0 sticky top-4 self-start max-h-[calc(100vh-2rem)] bg-gradient-to-br from-zinc-900 to-zinc-950 border border-zinc-800 rounded-xl shadow-xl overflow-hidden transform-gpu">
             <div className="p-3 border-b border-zinc-800/80 bg-zinc-900/80 backdrop-blur-sm sticky top-0 z-10">
               <h3 className="text-base font-medium text-teal-100 flex items-center justify-between">
                 <span>Word List</span>
@@ -188,45 +286,24 @@ export function FlashcardContainer({ cards }) {
                   {filteredCards.length}
                 </span>
               </h3>
+              <p className="text-xs text-zinc-400 mt-1">Hover over a word to see details</p>
             </div>
             
-            <div className="overflow-y-auto max-h-[calc(100vh-6rem)] p-1 scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-transparent">
-              <ul className="space-y-0.5">
-                {filteredCards.map((card, index) => (
-                  <li 
-                    key={index} 
-                    className={`px-3 py-2 rounded-lg transition-all duration-200 flex items-center text-sm ${
-                      bookmarkedCards[card.question] 
-                        ? "bg-teal-900/20 border border-teal-900/30" 
-                        : "hover:bg-zinc-800/60"
-                    }`}
-                  >
-                    <span className="w-6 inline-block text-right mr-2 text-zinc-500 font-mono text-xs">
-                      {index + 1}.
-                    </span>
-                    <span className={`${bookmarkedCards[card.question] ? "text-teal-200" : "text-zinc-300"}`}>
-                      {card.question}
-                    </span>
-                    {bookmarkedCards[card.question] && (
-                      <span className="ml-auto">
-                        <svg 
-                          xmlns="http://www.w3.org/2000/svg" 
-                          width="14" 
-                          height="14" 
-                          viewBox="0 0 24 24" 
-                          fill="#10B981"
-                          stroke="#10B981" 
-                          strokeWidth="2" 
-                          strokeLinecap="round" 
-                          strokeLinejoin="round"
-                        >
-                          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-                        </svg>
-                      </span>
-                    )}
-                  </li>
-                ))}
-              </ul>
+            <div className="overflow-y-auto max-h-[calc(100vh-6rem)] p-1 scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-transparent" style={{ direction: 'rtl' }}>
+              <TooltipProvider delayDuration={150}>
+                <ul className="space-y-0.5" style={{ direction: 'ltr' }}>
+                  {filteredCards.map((card, index) => (
+                    <SidebarItem
+                      key={card.question}
+                      card={card}
+                      index={index}
+                      isBookmarked={Boolean(bookmarkedCards[card.question])}
+                      onClick={() => {}} // No click action needed for tooltips
+                      onToggleBookmark={handleBookmarkToggle}
+                    />
+                  ))}
+                </ul>
+              </TooltipProvider>
               
               {filteredCards.length === 0 && (
                 <div className="py-8 px-4 text-center text-zinc-400 text-sm">
@@ -243,7 +320,7 @@ export function FlashcardContainer({ cards }) {
             {filteredCards.length > 0 ? (
               filteredCards.map((card, index) => (
                 <Flashcard
-                  key={index}
+                  key={card.question}
                   question={card.question}
                   answer={card.answer}
                   category={card.category}
