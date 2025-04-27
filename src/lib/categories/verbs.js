@@ -8,10 +8,10 @@ export const verbsFlashcards = [
   },
   {
     question: "ablehnen",
-    answer: "to decline",
+    answer: "to decline / to reject / to refuse",
     category: "Verbs",
     sampleGerman: "Sie hat mein Angebot abgelehnt.",
-    sampleEnglish: "She declined my offer."
+    sampleEnglish: "She rejected my offer."
   },
   {
     question: "abholen",
@@ -57,10 +57,10 @@ export const verbsFlashcards = [
   },
   {
     question: "abschließen",
-    answer: "to lock",
+    answer: "to lock / to complete / to finalize",
     category: "Verbs",
-    sampleGerman: "Ich habe die Tür abgeschlossen.",
-    sampleEnglish: "I locked the door."
+    sampleGerman: "Ich habe die Tür abgeschlossen. / Sie hat ihr Studium abgeschlossen. / Wir müssen den Vertrag abschließen.",
+    sampleEnglish: "I locked the door. / She completed her studies. / We need to finalize the contract."
   },
   {
     question: "abfliegen",
@@ -162,10 +162,10 @@ export const verbsFlashcards = [
   },
   {
     question: "abheben",
-    answer: "to withdraw / to take off (plane)",
+    answer: "to withdraw (money) / to take off (plane)",
     category: "Verbs",
-    sampleGerman: "Ich habe Geld abgehoben. / Das Flugzeug hebt bald ab.",
-    sampleEnglish: "I withdrew money. / The plane takes off soon."
+    sampleGerman: "Ich habe Geld von meinem Konto abgehoben. / Das Flugzeug hebt in 10 Minuten ab.",
+    sampleEnglish: "I withdrew money from my account. / The plane takes off in 10 minutes."
   },
   {
     question: "abkühlen",
@@ -456,10 +456,10 @@ export const verbsFlashcards = [
   },
   {
     question: "angehen",
-    answer: "to concern / approach (a problem)",
+    answer: "to concern / to approach / to turn on",
     category: "Verbs",
-    sampleGerman: "Das geht dich nichts an!",
-    sampleEnglish: "That's none of your business!"
+    sampleGerman: "Das geht dich nichts an! / Wir müssen das Problem anders angehen. / Die Lampe geht nicht an.",
+    sampleEnglish: "That's none of your business! / We need to approach the problem differently. / The lamp doesn't turn on."
   },
   {
     question: "anbringen",
@@ -508,14 +508,14 @@ export const verbsFlashcards = [
     answer: "to possess, own",
     category: "Verbs",
     sampleGerman: "Er besitzt ein schönes Haus.",
-    sampleEnglish: "He possesses a beautiful house."
+    sampleEnglish: "He owns a beautiful house."
   },
   {
     question: "besorgen",
     answer: "to obtain, get",
     category: "Verbs",
-    sampleGerman: "Ich muss einkaufen gehen.",
-    sampleEnglish: "I need to do some shopping."
+    sampleGerman: "Ich muss Lebensmittel besorgen.",
+    sampleEnglish: "I need to get groceries."
   },
   {
     question: "besuchen",
@@ -792,10 +792,10 @@ export const verbsFlashcards = [
   },
   {
     question: "einlegen",
-    answer: "to insert, put in",
+    answer: "to insert / to put in / to preserve / to file (complaint)",
     category: "Verbs",
-    sampleGerman: "Die Dokumente wurden sorgfältig eingelegt.",
-    sampleEnglish: "The documents were carefully inserted."
+    sampleGerman: "Die Dokumente wurden sorgfältig eingelegt. / Sie legt Gurken für den Winter ein. / Er hat Berufung gegen das Urteil eingelegt.",
+    sampleEnglish: "The documents were carefully inserted. / She preserves cucumbers for winter. / He filed an appeal against the verdict."
   },
   {
     question: "entfernen",
@@ -918,10 +918,10 @@ export const verbsFlashcards = [
   },
   {
     question: "verlegen",
-    answer: "to transfer",
+    answer: "to misplace / to postpone / to relocate / to publish",
     category: "Verbs",
-    sampleGerman: "Die Verlegung des Büros ist geplant.",
-    sampleEnglish: "The transfer of the office is planned."
+    sampleGerman: "Ich habe mein Handy verlegt. / Der Termin wurde auf nächste Woche verlegt. / Der Verlag hat ihr Buch verlegt.",
+    sampleEnglish: "I misplaced my phone. / The appointment was postponed until next week. / The publisher published her book."
   },
   {
     question: "vorbestellen",
@@ -1559,5 +1559,136 @@ export const verbsFlashcards = [
     category: "Verbs",
     sampleGerman: "Das hängt mit dem Wetter zusammen.",
     sampleEnglish: "That is related to the weather."
+  },
+  {
+    question: "aufheben",
+    answer: "to pick up / to cancel / to preserve",
+    category: "Verbs",
+    sampleGerman: "Ich hebe den Stift vom Boden auf. / Die Veranstaltung wurde aufgehoben. / Diese Briefe hat sie jahrelang aufgehoben.",
+    sampleEnglish: "I'm picking up the pen from the floor. / The event was canceled. / She preserved these letters for years."
+  },
+  {
+    question: "aufnehmen",
+    answer: "to record / to take up / to admit / to accommodate",
+    category: "Verbs",
+    sampleGerman: "Wir nehmen das Interview auf. / Sie nimmt das Studium wieder auf. / Die Universität hat ihn aufgenommen. / Sie haben Flüchtlinge aufgenommen.",
+    sampleEnglish: "We are recording the interview. / She is resuming her studies. / The university admitted him. / They accommodated refugees."
+  },
+  {
+    question: "ausgehen",
+    answer: "to go out / to assume / to run out",
+    category: "Verbs",
+    sampleGerman: "Wir gehen heute Abend aus. / Ich gehe davon aus, dass du kommst. / Uns ist das Geld ausgegangen.",
+    sampleEnglish: "We are going out tonight. / I assume that you will come. / We ran out of money."
+  },
+  {
+    question: "aufgeben",
+    answer: "to give up / to mail / to assign",
+    category: "Verbs",
+    sampleGerman: "Ich gebe nie auf! / Ich muss diesen Brief aufgeben. / Die Lehrerin gibt Hausaufgaben auf.",
+    sampleEnglish: "I never give up! / I need to mail this letter. / The teacher assigns homework."
+  },
+  {
+    question: "auffallen",
+    answer: "to stand out / to attract attention / to be noticeable",
+    category: "Verbs",
+    sampleGerman: "Sein buntes Hemd fällt sofort auf. / Sie ist durch ihre Intelligenz aufgefallen.",
+    sampleEnglish: "His colorful shirt stands out immediately. / She attracted attention through her intelligence."
+  },
+  {
+    question: "aufhalten",
+    answer: "to stop / to detain / to stay / to reside",
+    category: "Verbs",
+    sampleGerman: "Halt mich nicht auf, ich bin spät dran. / Er hält sich in Berlin auf.",
+    sampleEnglish: "Don't hold me up, I'm running late. / He is staying in Berlin."
+  },
+  {
+    question: "belegen",
+    answer: "to occupy / to prove / to document / to take (course)",
+    category: "Verbs",
+    sampleGerman: "Der Koffer belegt viel Platz im Schrank. / Die Studie belegt unsere Theorie. / Sie belegt einen Deutschkurs.",
+    sampleEnglish: "The suitcase occupies a lot of space in the closet. / The study proves our theory. / She is taking a German course."
+  },
+  {
+    question: "beziehen",
+    answer: "to refer to / to move into / to receive / to cover",
+    category: "Verbs",
+    sampleGerman: "Das bezieht sich auf deine Frage. / Wir beziehen nächste Woche die neue Wohnung. / Sie bezieht ein regelmäßiges Gehalt. / Ich muss das Bett neu beziehen.",
+    sampleEnglish: "That refers to your question. / We're moving into the new apartment next week. / She receives a regular salary. / I need to put new covers on the bed."
+  },
+  {
+    question: "erfahren",
+    answer: "to experience / to learn / to find out",
+    category: "Verbs",
+    sampleGerman: "Ich habe viel Unterstützung erfahren. / Ich habe gerade erfahren, dass du umziehst.",
+    sampleEnglish: "I have experienced a lot of support. / I just found out that you're moving."
+  },
+  {
+    question: "nachgehen",
+    answer: "to pursue / to follow / to be slow (clock)",
+    category: "Verbs",
+    sampleGerman: "Er geht seinen Hobbys nach. / Wir müssen dieser Spur nachgehen. / Meine Uhr geht nach.",
+    sampleEnglish: "He pursues his hobbies. / We need to follow this lead. / My watch is running slow."
+  },
+  {
+    question: "übernehmen",
+    answer: "to take over / to assume responsibility / to adopt",
+    category: "Verbs",
+    sampleGerman: "Er übernimmt die Firma von seinem Vater. / Ich übernehme die Verantwortung dafür. / Wir haben seine Idee übernommen.",
+    sampleEnglish: "He is taking over the company from his father. / I take responsibility for that. / We adopted his idea."
+  },
+  {
+    question: "umgehen",
+    answer: "to deal with / to handle / to bypass / to avoid",
+    category: "Verbs",
+    sampleGerman: "Er kann gut mit Stress umgehen. / Sie umgeht die Regeln. / Wir können das Problem nicht umgehen.",
+    sampleEnglish: "He can handle stress well. / She bypasses the rules. / We cannot avoid the problem."
+  },
+  {
+    question: "vergehen",
+    answer: "to pass (time) / to commit (offense) / to fade away",
+    category: "Verbs",
+    sampleGerman: "Die Zeit vergeht schnell. / Er hat sich nichts vergangen. / Der Schmerz vergeht langsam.",
+    sampleEnglish: "Time passes quickly. / He hasn't committed any offense. / The pain is slowly fading away."
+  },
+  {
+    question: "vorbereiten",
+    answer: "to prepare / to get ready",
+    category: "Verbs",
+    sampleGerman: "Ich bereite das Abendessen vor. / Wir bereiten uns auf die Prüfung vor.",
+    sampleEnglish: "I'm preparing dinner. / We're preparing for the exam."
+  },
+  {
+    question: "anwenden",
+    answer: "to apply / to use / to implement",
+    category: "Verbs",
+    sampleGerman: "Sie können diese Methode in der Praxis anwenden. / Diese Regel wird nicht mehr angewendet.",
+    sampleEnglish: "You can apply this method in practice. / This rule is no longer being implemented."
+  },
+  {
+    question: "ausmachen",
+    answer: "to turn off / to arrange / to determine / to matter",
+    category: "Verbs",
+    sampleGerman: "Mach bitte das Licht aus. / Wir haben einen Termin ausgemacht. / Das macht nichts aus.",
+    sampleEnglish: "Please turn off the light. / We arranged an appointment. / It doesn't matter."
+  },
+  {
+    question: "ersetzen",
+    answer: "to replace / to substitute",
+    category: "Verbs",
+    sampleGerman: "Die alte Maschine wurde durch eine neue ersetzt. / Butter kann durch Margarine ersetzt werden.",
+    sampleEnglish: "The old machine was replaced by a new one. / Butter can be substituted with margarine."
+  },
+  {
+    question: "zulegen",
+    answer: "to acquire / to purchase / to speed up / to gain weight",
+    category: "Verbs",
+    sampleGerman: "Er hat sich ein neues Auto zugelegt. / Du musst zulegen, wenn du den Zug erreichen willst. / Ich habe über die Feiertage zugelegt.",
+    sampleEnglish: "He purchased a new car. / You need to speed up if you want to catch the train. / I gained weight over the holidays."
   }
 ];
+
+// Export a sorted version of the verbs array for alphabetical display
+export const sortedVerbsFlashcards = [...verbsFlashcards].sort((a, b) => 
+  a.question.localeCompare(b.question, 'de')
+);

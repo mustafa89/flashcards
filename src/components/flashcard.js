@@ -120,16 +120,76 @@ export function Flashcard({ question, answer, category, sampleGerman, sampleEngl
               <div className="text-teal-300/70 text-sm">Translation</div>
             </CardHeader>
             
-            <CardContent className="flex-grow px-6 pt-6 pb-2 flex flex-col relative z-10">
-              <div className="text-2xl font-medium text-center mb-auto text-teal-50">{answer}</div>
+            <CardContent className="flex-grow px-6 pt-6 pb-2 flex flex-col relative z-10 overflow-hidden">
+              {/* Display answer with multiple meanings if separated by slashes */}
+              {answer.includes('/') ? (
+                <div className="mb-4">
+                  <div className={`text-center text-teal-50 ${
+                    answer.split('/').length > 4 ? 'text-sm' : 
+                    answer.split('/').length > 3 ? 'text-base' : 
+                    answer.split('/').length > 2 ? 'text-xl' : 
+                    'text-2xl'
+                  } font-medium`}>
+                    {answer.split('/').map((meaning, index, array) => (
+                      <span key={index}>
+                        {meaning.trim()}
+                        {index < array.length - 1 && <span className="text-teal-400 mx-1">/</span>}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="text-2xl font-medium text-center mb-4 text-teal-50">{answer}</div>
+              )}
               
               {sampleGerman && (
-                <div className="mt-4 backdrop-blur-sm bg-teal-900/30 p-3 rounded-md border border-teal-500/20 group-hover:border-teal-500/40 transition-all duration-300">
-                  <div className="text-base text-teal-200 font-medium">
-                    &ldquo;{sampleGerman}&rdquo;
-                  </div>
-                  <div className="text-sm text-teal-300/90 italic mt-1">
-                    &ldquo;{sampleEnglish}&rdquo;
+                <div className="mt-2 backdrop-blur-sm bg-teal-900/30 rounded-md border border-teal-500/20 group-hover:border-teal-500/40 transition-all duration-300 relative">
+                  {/* Add scrolling back to example sentences with custom scrollbar styling */}
+                  <div 
+                    className="p-3 max-h-[180px] overflow-y-auto relative" 
+                    style={{
+                      scrollbarWidth: 'thin',
+                      scrollbarColor: 'rgba(20, 184, 166, 0.4) rgba(19, 78, 74, 0.2)'
+                    }}
+                  >
+                    {/* Subtle scroll indicator */}
+                    <div className="absolute right-1 bottom-1 w-4 h-4 text-teal-400/60 pointer-events-none opacity-70">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+                      </svg>
+                    </div>
+                    
+                    {/* Split sentences if they contain slashes indicating multiple examples */}
+                    {sampleGerman.includes('/') ? (
+                      // Multiple examples - use consistent font size with scrolling
+                      <div className="space-y-2 text-sm">
+                        {sampleGerman.split('/').map((germanSentence, index) => {
+                          const englishSentences = sampleEnglish.split('/');
+                          const englishSentence = englishSentences[index] || '';
+                          
+                          return (
+                            <div key={index} className={index > 0 ? "pt-1 border-t border-teal-700/30" : ""}>
+                              <div className="text-teal-200 font-medium">
+                                &ldquo;{germanSentence.trim()}&rdquo;
+                              </div>
+                              <div className="text-teal-300/90 italic mt-0.5">
+                                &ldquo;{englishSentence.trim()}&rdquo;
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      // Single example - use consistent size with scrolling
+                      <>
+                        <div className="text-teal-200 font-medium text-sm">
+                          &ldquo;{sampleGerman}&rdquo;
+                        </div>
+                        <div className="text-teal-300/90 italic mt-1 text-sm">
+                          &ldquo;{sampleEnglish}&rdquo;
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               )}

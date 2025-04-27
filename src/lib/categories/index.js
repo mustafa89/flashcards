@@ -1,6 +1,6 @@
 import { nounsFlashcards } from './nouns';
 import { adjectivesFlashcards } from './adjectives';
-import { verbsFlashcards } from './verbs';
+import { sortedVerbsFlashcards } from './verbs';
 import { adverbsFlashcards } from './adverbs';
 import { prepositionsFlashcards } from './prepositions';
 import { pronounsFlashcards } from './pronouns';
@@ -16,7 +16,7 @@ import { connectors } from './connectors';
 export const allFlashcards = [
   ...nounsFlashcards,
   ...adjectivesFlashcards,
-  ...verbsFlashcards,
+  ...sortedVerbsFlashcards,
   ...adverbsFlashcards,
   ...prepositionsFlashcards,
   ...pronounsFlashcards,

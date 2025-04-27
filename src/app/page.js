@@ -1,20 +1,19 @@
 import { FlashcardContainer } from "@/components/flashcard-container";
-import { sampleFlashcards } from "@/lib/data";
+import { allFlashcards } from "@/lib/categories";
 
 export default function Home() {
   return (
     <div className="container mx-auto px-4 py-8">
-      <header className="mb-12 text-center">
-        <h1 className="text-4xl font-bold mb-4">German Vocabulary Flashcards</h1>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
-          Click on a card to flip it and reveal the English translation. Each card includes example 
-          sentences to help you understand the word in context. Practice your German vocabulary with these 
-          interactive flashcards!
+      <header className="mb-8">
+        <h1 className="text-3xl font-bold mb-2 text-teal-400">Study All Cards</h1>
+        <p className="text-zinc-400 max-w-2xl">
+          Browse and study all German vocabulary cards. Hover over a card to reveal its translation and example sentences.
+          Bookmark cards you find challenging to revisit later.
         </p>
       </header>
       
       <main>
-        <FlashcardContainer cards={sampleFlashcards} />
+        <FlashcardContainer cards={allFlashcards} />
       </main>
     </div>
   );
