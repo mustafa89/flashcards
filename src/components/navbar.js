@@ -123,6 +123,21 @@ export function Navbar() {
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
+              
+              {/* Writing Practice Link */}
+              <NavigationMenuItem>
+                <Link 
+                  href="/practice"
+                  className={cn(
+                    "px-4 py-2 rounded-md text-sm font-medium transition-colors",
+                    pathname === "/practice" 
+                      ? "bg-zinc-800 text-teal-400" 
+                      : "text-zinc-200 hover:bg-zinc-800/50 hover:text-teal-300"
+                  )}
+                >
+                  Writing Practice
+                </Link>
+              </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
         </div>

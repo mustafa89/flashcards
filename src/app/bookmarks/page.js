@@ -40,7 +40,7 @@ export default function BookmarksPage() {
         </h1>
         <p className="text-zinc-400 max-w-2xl">
           Your collection of bookmarked flashcards for focused study. 
-          These are cards you've marked to revisit.
+          These are cards you&apos;ve marked to revisit.
         </p>
       </header>
       
@@ -53,7 +53,7 @@ export default function BookmarksPage() {
           <FlashcardContainer cards={bookmarkedCards} />
         ) : (
           <div className="text-center py-12">
-            <p className="text-zinc-400 mb-4">You haven't bookmarked any cards yet.</p>
+            <p className="text-zinc-400 mb-4">You haven&apos;t bookmarked any cards yet.</p>
             <p className="text-zinc-500">Bookmark cards by clicking the bookmark icon in the corner of any card.</p>
           </div>
         )}
