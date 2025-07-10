@@ -1,6 +1,3 @@
-"use client";
-
-import { use } from "react";
 import { FlashcardContainer } from "@/components/flashcard-container";
 import { allFlashcards } from "@/lib/categories";
 import { notFound } from "next/navigation";
@@ -24,10 +21,14 @@ const categoryMap = {
   'expressions': 'Expressions'
 };
 
+export async function generateStaticParams() {
+  return Object.keys(categoryMap).map((slug) => ({
+    category: slug,
+  }));
+}
+
 export default function CategoryPage({ params }) {
-  // Unwrap the params Promise with use()
-  const unwrappedParams = use(params);
-  const categorySlug = unwrappedParams.category;
+  const categorySlug = params.category;
   const categoryName = categoryMap[categorySlug];
   
   if (!categoryName) {
@@ -61,4 +62,4 @@ export default function CategoryPage({ params }) {
       </main>
     </div>
   );
-} 
+}
